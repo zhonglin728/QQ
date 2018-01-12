@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"> 
+<head>
+    <!--Bootstrap-->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!--bootstrap Select-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
+    <!--select2-->
+    <link href="https://cdn.bootcss.com/select2/4.0.3/css/select2.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/select2/4.0.3/js/select2.js"></script>
+    <!--edit-->
+    <link rel="stylesheet" href="/css/editormd.css" />
+    <script src="/js/editormd.js"></script>
+    <!--文本编辑-->
+    <link href="/css/bootstrap-editable.css" rel="stylesheet" />
+    <script src="/js/bootstrap-editable.min.js"></script>
+    <!--滚动条-->
+    <script src="https://cdn.bootcss.com/jQuery-slimScroll/1.3.8/jquery.slimscroll.min.js"></script>
+    <!--Tree-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
+    <!--Jquery Table-->
+    <!-- <link href="https://cdn.bootcss.com/datatables/1.10.15/css/dataTables.jqueryui.min.css" rel="stylesheet"> -->
+    <script src="https://cdn.bootcss.com/datatables/1.10.15/js/jquery.dataTables.min.js"></script>
+    <!--Bootstrap Table-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/locale/bootstrap-table-zh-CN.min.js"></script>
+    <!--bootstrap datepicker-->
+    <link rel="stylesheet" href="/css/bootstrap-datepicker.min.css" />
+    <script src="/js/bootstrap-datepicker.min.js"></script>
+    <script src="/js/bootstrap-datepicker.zh-CN.min.js"></script>
+    <!--bootstrap page-->
+    <script src="/js/bootstrap-paginator.min.js"></script>
+    <!----layer ui-->
+    <link rel="stylesheet" href="/js/layui/css/layui.css" />
+    <script src="/js/layui/layui.all.js"></script>
+    <script src="/js/layui/layui.js"></script>
+
+    <title>Hello World!</title>
+</head>
+<body>
+
+<h1 th:inline="text">Hello钟林！组件演示！</h1>
+
+<hr/>
+<div class="panel panel-default panel-success">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+             select 多选组件
+        </h3>
+    </div>
+    <div class="panel-body">
+
+        <div class="form-group">
+            <label class="col-sm-1 control-label">学历信息：</label>
+
+            <div class="col-sm-2">
+                <select class="selectpicker1 select2" multiple data-size="10" data-actions-box="true" data-live-search="true" data-title="走了走了走" data-multiple-separator="^">
+                    <option data-icon="glyphicon-heart">小学</option>
+                    <option>初中</option>
+                    <option>高中</option>
+                    <option>大学</option>
+                    <option>硕士</option>
+                    <option>博士</option>
+                </select>
+            </div>
+            <div class="col-sm-2">
+                <select class="selectpicker2">
+                    <optgroup label="Picnic">
+                        <option>Mustard</option>
+                        <option>Ketchup</option>
+                        <option>Relish</option>
+                    </optgroup>
+                    <optgroup label="Camping">
+                        <option>Tent</option>
+                        <option>Flashlight</option>
+                        <option>Toilet Paper</option>
+                    </optgroup>
+                </select>
+            </div>
+            <div class="col-sm-2">
+                <select class="selectpicker3" multiple>
+                    <option>小学</option>
+                    <option>初中</option>
+                    <option>高中</option>
+                    <option>大学</option>
+                    <option>硕士</option>
+                    <option>博士</option>
+                </select>
+            </div>
+
+            <div class="col-sm-2">
+                <select class="selectpicker4">
+                    <option title="Combo 1">Hot Dog, Fries and a Soda</option>
+                    <option title="Combo 2">Burger, Shake and a Smile</option>
+                    <option title="Combo 3">Sugar, Spice and all things nice</option>
+                </select>
+
+            </div>
+            <div class="col-sm-2">
+                <select class="selectpicker5" data-live-search="true">
+                    <option data-tokens="ketchup mustard">钟林, 湖北襄阳</option>
+                    <option data-tokens="mustard">王宝强👍, 北京</option>
+                    <option data-tokens="frosting">周杰伦, 中国台湾</option>
+                </select>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<script type="text/javascript">
+    $(function (){
+        //设置参数
+        $("select[class^='selectpicker']").selectpicker({
+            style: 'btn-info',
+            size: 10,
+            tickIcon:'glyphicon-ok'
+        });
+        //取值！
+        $("select[class='selectpicker3']").selectpicker("selectAll");
+        $("select[class^='selectpicker']").each(function (i,n){
+            console.log($(n).val());
+        });
+
+
+    })
+</script>
+
+<hr/>
+<div class="well">
+<h3 style="text-align: center;">bootstrap select2</h3>
+    <div class="well">
+            <div class="form-group">
+                <div class="col-sm-2">
+                    <select class="js-example-basic-single form-control"><!--单选带搜索 -->
+                        <optgroup label="系统设置">
+                            <option value="1" disabled="disabled">用户管理</option>
+                            <option value="2">角色管理</option>
+                            <option value="3">部门管理</option>
+                            <option value="4">菜单管理</option>
+                        </optgroup>
+                        <optgroup label="订单管理">
+                            <option value="5">订单查询</option>
+                            <option value="6">订单导入</option>
+                            <option value="7">订单删除</option>
+                            <option value="8">订单撤销</option>
+                        </optgroup>
+                        <optgroup label="基础数据">
+                            <option value="9">基础数据维护</option>
+                        </optgroup>
+                    </select>
+                </div>
+                <div class="col-sm-2">
+                    <select class="js-example-basic-single js-example-basic-multiple js-states form-control" multiple><!--多选带搜索-->
+                        <option value="AL">湖北同样兔兔语言</option>
+                        <option value="WY">湖南结婚结婚后</option>
+                        <option value="WY">广东同一天同一套</option>
+                        <option value="WY">北京共和国海关</option>
+                        <option value="WY">四川如同仁堂</option>
+                        <option value="WY">黑龙江热风丰富</option>
+                        <option value="WY">十堰飞度飞度飞度飞度飞度纷纷大幅度</option>
+                        <option value="WY">维吾尔族速度是多少</option>
+                        <option value="WY">山东的奋斗奋斗奋斗</option>
+                    </select>
+                </div>
+                <div class="col-sm-2"><!--后台获取数据  DATA-->
+                    <select class="select-array form-control" multiple>
+                    </select>
+                </div>
+                <div class="col-sm-2"><!--带图标的 自定义下来内容-->
+                    <select id="sel_menu" class="js-example-templating js-states form-control">
+                        <optgroup label="系统设置">
+                            <option value="1">用户管理</option>
+                            <option value="2">角色管理</option>
+                            <option value="3">部门管理</option>
+                            <option value="4">菜单管理</option>
+                        </optgroup>
+                        <optgroup label="订单管理">
+                            <option value="5">订单查询</option>
+                            <option value="6">订单导入</option>
+                            <option value="7">订单删除</option>
+                            <option value="8">订单撤销</option>
+                        </optgroup>
+                        <optgroup label="基础数据">
+                            <option value="9">基础数据维护</option>
+                        </optgroup>
+                    </select>
+                </div>
+                <div class="col-sm-2">
+                    <select id="sel_menu3" class="js-data-example-ajax form-control">
+                        <option value="3620194" selected="selected">请选择</option>
+                    </select>
+                </div>
+            </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function (){
+        // 初始化select2 控件
+        $(".js-example-basic-single").select2({
+            maximumSelectionLength: 2,
+            language: "es"
+        });
+
+        //后台获取数据  DATA-
+        $(".select-array").select2({
+            data:[{ id: 0, text: 'enhancement' }, { id: 1, text: 'bug' }, { id: 2, text: 'duplicate' }, { id: 3, text: 'invalid' }, { id: 4, text: 'wontfix' }]
+        });
+
+        //带图片
+        $("#sel_menu").select2({
+            templateResult: formatState,
+            templateSelection: formatState
+        });
+        //带图片的格式化方法！
+        function formatState(state) {
+            if (!state.id) { return state.text; }
+            var $state = $(
+                '<span class="glyphicon glyphicon-calendar"> '+ state.text + '</span>'
+            );
+            return $state;
+        };
+
+        //ajax后台获取数据
+        //远程筛选
+        $("#sel_menu3").select2({
+            placeholder: "后台AJAX过去到数据！",
+            ajax: {
+                url: "/user/selectAjax",
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        q: params.term, // search term
+                        page: params.page
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: data.items,
+                        pagination: {
+                            more: (params.page * 30) < data.total_count
+                        }
+                    };
+                },
+                cache: true
+            },
+            escapeMarkup: function (markup) { return markup; }, // let our custom formatter work
+            minimumInputLength: 1,
+            language: "zh-CN", //设置 提示语言
+            maximumSelectionLength: 3,  //设置最多可以选择多少项
+            tags: false,  //设置必须存在的选项 才能选中
+            templateResult: function (repo) { //搜索到结果返回后执行，可以控制下拉选项的样式
+                console.log("result"+repo);
+                if (repo.loading) return repo;
+                var markup = "<div class=''>" + repo + "</div>";
+                return markup;
+            },
+            templateSelection: function (repo) {  //选中某一个选项是执行
+                console.log("Select"+repo);
+                return repo.full_name || repo;
+            }
+        });
+    })
+</script>
+
+<hr/>
+<div class="well">
+    <h3 style="text-align: center;">Edit编辑器</h3>
+    <div class="well">
+        <div class="editormd" id="test-editormd">
+            <textarea class="editormd-markdown-textarea" name="test-editormd-markdown-doc">
+
+            </textarea>
+            <!-- 第二个隐藏文本域，用来构造生成的HTML代码，方便表单POST提交，这里的name可以任意取，后台接受时以这个name键为准 -->
+            <textarea class="editormd-html-textarea" name="text"></textarea>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function(){
+        $.ajax({
+            url: '../editData.txt',//读取数据内容  内容太多 所以 放在TXT里面
+            dataType: 'text',
+            success: function(data) {
+                $(".editormd-markdown-textarea").val(data);
+            }
+        });
+
+        editormd("test-editormd", {
+            width   : "100%",
+            height  : 640,
+            syncScrolling : "single",
+            //你的lib目录的路径，我这边用JSP做测试的
+            path   : "/lib/",
+            //这个配置在simple.html中并没有，但是为了能够提交表单，使用这个配置可以让构造出来的HTML代码直接在第二个隐藏的textarea域中，方便post提交表单。
+            saveHTMLToTextarea : true,
+            codeFold : true,
+            searchReplace : true,
+            htmlDecode : "style,script,iframe|on*",
+            emoji : true,
+            taskList : true,
+            tocm  : true,         // Using [TOCM]
+            tex : true,                   // 开启科学公式TeX语言支持，默认关闭
+            flowChart : true,             // 开启流程图支持，默认关闭
+            sequenceDiagram : true,       // 开启时序/序列图支持，默认关闭,
+            imageUpload : true,
+            imageFormats : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+            imageUploadURL : "examples/php/upload.php",
+            onload : function() {
+                console.log('onload', this);
+            }
+        });
+    });
+</script>
+
+
+<hr/>
+<div class="well">
+    <h3 style="text-align: center;">文本编辑器</h3>
+    <div class="well">
+        <div class="form-group">
+            <div class="col-sm-6">
+                <a href="#" id="usernameX">钟林</a>
+            </div>
+            <div class="col-sm-6">
+                <a href="#" id="department">选择部门</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $('#usernameX').editable({//input
+            type: "text",                //编辑框的类型。支持text|textarea|select|date|checklist等
+            title: "用户名",              //编辑框的标题
+            disabled: false,             //是否禁用编辑
+            emptytext: "空文本",          //空值的默认文本
+            mode: "inline",              //编辑框的模式：支持popup和inline两种模式，默认是popup
+            validate: function (value) { //字段验证
+                if (!$.trim(value)) {
+                    return '不能为空';
+                }
+            }
+        });
+        $('#department').editable({//select
+            type: "select",              //编辑框的类型。支持text|textarea|select|date|checklist等
+            source: [{ value: 1, text: "开发部" }, { value: 2, text: "销售部" }, {value:3,text:"行政部"}],
+            title: "选择部门",           //编辑框的标题
+            disabled: false,           //是否禁用编辑
+            emptytext: "空文本",       //空值的默认文本
+            mode: "popup",            //编辑框的模式：支持popup和inline两种模式，默认是popup
+            validate: function (value) { //字段验证
+                if (!$.trim(value)) {
+                    return '不能为空';
+                }
+            }
+        });
+
+    });
+</script>
+
+
+<hr/>
+<div class="well">
+    <h3 style="text-align: center;">Jquery 滚动条插件！</h3>
+    <div class="well">
+        <div id="inner-content">
+            <div class="col-md-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam rhoncus, felis interdum condimentum consectetur, nisl libero elementum eros, vehicula congue lacus eros non diam. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus mauris lorem, lacinia id tempus non, imperdiet et leo. Cras sit amet erat sit amet lacus egestas placerat. Aenean ultricies ultrices mauris ac congue. In vel tortor vel velit tristique tempus ac id nisi. Proin quis lorem velit. Nunc dui dui, blandit a ullamcorper vitae, congue fringilla lectus. Aliquam ultricies malesuada feugiat. Vestibulum placerat turpis et eros lobortis vel semper sapien pulvinar.
+                Pellentesque rhoncus aliquet porta. Sed vel magna eu turpis pharetra consequat ut vitae lectus. In molestie sollicitudin mi sit amet convallis. Aliquam erat volutpat. Nullam feugiat placerat ipsum eget malesuada. Nulla facilisis nunc non dolor vehicula pretium. Sed dui magna, sodales id pharetra non, ullamcorper eu sapien. Mauris ac consectetur leo. Mauris consequat, lectus ut bibendum pulvinar, leo magna feugiat enim, eu commodo lacus sem vel ante. Sed tempus metus eget leo mollis vulputate. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function (){
+        $("#inner-content").slimScroll({
+            size: '10px', //组件宽度
+            color: '#000', //滚动条颜色
+            position: 'left', //组件位置：left/right
+            distance: '0px', //组件与侧边之间的距离
+            start: 'top', //默认滚动位置：top/bottom
+            opacity: .7, //滚动条透明度
+            alwaysVisible: true, //是否 始终显示组件
+            disableFadeOut: false, //是否 鼠标经过可滚动区域时显示组件，离开时隐藏组件
+            railVisible: true, //是否 显示轨道
+            railColor: 'red', //轨道颜色
+            railOpacity: .6, //轨道透明度
+            railDraggable: true, //是否 滚动条可拖动
+            railClass: 'slimScrollRail', //轨道div类名
+            barClass: 'slimScrollBar', //滚动条div类名
+            wrapperClass: 'slimScrollDiv', //外包div类名
+            allowPageScroll: true, //是否 使用滚轮到达顶端/底端时，滚动窗口
+            wheelStep: 20, //滚轮滚动量
+            touchScrollStep: 200, //滚动量当用户使用手势
+            borderRadius: '7px', //滚动条圆角
+            railBorderRadius: '7px' //轨道圆角
+        });
+        $("#inner-content").slimScroll().bind('slimscroll', function(e, pos){
+            console.log("当滚动条达到父容器的顶部或底部触发事件：")
+            console.log(pos);
+        });
+    })
+</script>
+
+
+<hr/>
+    <h3 style="text-align: center;">Tree组件！</h3>
+    <div class="well">
+        <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+            <form id="s" class="form-inline" role="form">
+                <div class="form-group">
+                    <input class="form-control" type="search" id="q" />
+                    <button class="btn" type="submit">Search Tree节点</button>
+                    <button class="btn checkTree" type="button">选择后的结果</button>
+                </div>
+            </form>
+            <div id="jstree_demo_div"></div>
+            </div>
+            <div class="col-md -5">
+            父节点ID <input  type="text" id="nodeParent" />
+               节点ID <input  type="text" id="nodeId" />
+                节点Name<input type="text" id="nodeText" />
+            </div>
+        </div>
+        </div>
+    </div>
+
+<script type="text/javascript">
+    $(function (){
+        //加载tree数据
+        $("#jstree_demo_div").jstree({
+            'core' : {
+                "check_callback" : function (operation, node, parent, position, more){
+                    if (operation === 'create_node'){
+                        layui.layer.alert("为ID"+parent.id+"创建");
+                    }
+                    if (operation === 'delete_node'){
+                    	layui.layer.alert("delete"+parent.id);
+                    }
+                    if (operation === 'rename_node'){
+                    	layui.layer.alert("rename");
+                    }
+                },
+                'data' : {
+                    "url":"/user/treeZhonglin",
+                    dataType: "json"
+
+                }
+            },
+            "plugins" : ["checkboxX","contextmenu","dnd","search","sort"]
+        });
+
+        //tree搜索
+        $("#s").submit(function(e) {
+            e.preventDefault();
+            $("#jstree_demo_div").jstree(true).search($("#q").val());
+        });
+
+        //tree 点击 change时事件
+        $('#jstree_demo_div').on("changed.jstree", function (e, data) {
+        	console.log(data.node);
+        	$("#nodeParent").val(data.node.parent);
+            $("#nodeId").val(data.node.id);
+            $("#nodeText").val(data.node.text);
+        });
+
+        $(".checkTree").click(function (){
+            console.log($('#jstree_demo_div').get_checked());
+        })
+
+
+    })
+</script>
+
+<hr/>
+<h3 style="text-align: center;">Jquery  Table组件！</h3>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <form class="form-horizontal" role="form">
+        <div class="form-group">
+            <label class="col-md-1 control-label">编码</label>
+            <div class="col-md-2">
+                <input type="text" class="form-control" id="id" name="id" placeholder="请输入id">
+            </div>
+            <label class="col-md-1 control-label">用户名</label>
+            <div class="col-md-2">
+                <input type="text" class="form-control" id="username" name="username" placeholder="请输入用户名">
+            </div>
+            <label class="col-md-1 control-label">密码</label>
+            <div class="col-md-2">
+                <input type="text" class="form-control" id="password" name="password" placeholder="请输入密码">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-1 control-label">过期</label>
+            <div class="col-md-2">
+                <select class="form-control" id="expired" name="expired">
+                    <option>true</option>
+                    <option>false</option>
+                </select>
+            </div>
+            <label class="col-md-1 control-label">锁定</label>
+            <div class="col-md-2">
+                <select class="form-control" id="locked" name="locked">
+                    <option>true</option>
+                    <option>false</option>
+                </select>
+            </div>
+            <label class="col-md-1 control-label">凭证</label>
+            <div class="col-md-2">
+                <select class="form-control" id="credential" name="credential">
+                    <option>true</option>
+                    <option>false</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-1 control-label">时间</label>
+            <div class="col-md-2 input-group">
+                <input type="text" class="form-control datepicker" id="createTime" name="createTime" placeholder="请输入选择时间">
+                <div class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-1 col-md-2">
+                <button type="submit" class="btn btn-success" style="width: 120px;"><span class="glyphicon glyphicon-circle-arrow-down"></span>&nbsp;提交</button>
+            </div>
+            <div class="col-md-2">
+                <button type="reset" class="btn btn-success" style="width: 120px;"><span class="glyphicon glyphicon-fire"></span>&nbsp;取消</button>
+            </div>
+        </div>
+    </form>
+ </div>
+</div>
+<table id="example" class="display" cellspacing="0" width="100%">
+    <thead>
+    <tr>
+        <th>编码</th>
+        <th>用户名</th>
+        <th>密码</th>
+        <th>过期</th>
+        <th>锁定🔒</th>
+        <th>凭证</th>
+        <th>禁用</th>
+        <th>创建时间</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    
+</table>
+
+<script type="text/javascript">
+    $(function (){
+        function info (id){
+            alert("查看"+id);
+        }
+    //设置时间插件
+        $(".datepicker").datepicker({
+            language: "zh-CN",
+            autoclose: true,//选中之后自动隐藏日期选择框
+            clearBtn: true,//清除按钮
+            todayBtn: true,//今日按钮
+            format: "yyyy-mm-dd"//日期格式，详见 http://bootstrap-datepicker.readthedocs.org/en/release/options.html#format
+        });
+        var tmpRows = new Object();
+    //设置表格插件！
+        $('#example').DataTable( {
+            "oLanguage": {
+                "sLengthMenu": "每页显示 _MENU_ 条记录",
+                "sZeroRecords": "对不起，查询不到任何相关数据",
+                "sInfo": "当前显示 _START_ 到 _END_ 条，共 _TOTAL_ 条记录",
+                "sInfoEmtpy": "找不到相关数据",
+                "sInfoFiltered": "数据表中共为 _MAX_ 条记录)",
+                "sProcessing": "正在加载中...",
+                "sSearch": "搜索",
+                "sUrl": "", //多语言配置文件，可将oLanguage的设置放在一个txt文件中，例：Javascript/datatable/dtCH.txt
+                "oPaginate": {
+                    "sFirst": "第一页",
+                    "sPrevious": " 上一页 ",
+                    "sNext": " 下一页 ",
+                    "sLast": " 最后一页 "
+                }
+            }, //多语言配置
+            "ajax": {
+                "type":"get",
+                "url":"/user/tableAjax"
+            },
+            "columns": [
+                { "data": "id" ,"width":"5%"},
+                { "data": "username" },
+                { "data": "password" },
+                { "data": "expired" },
+                { "data": "locked" },
+                { "data": "credential" },
+                {"data":"enabled"},
+                {"data":"createTime"}
+            ],
+            columnDefs:[{
+                title:"操作！",
+                width: "15%",
+                targets: 8,
+                render: function (data, type, row, meta) {
+                    var html = '<button class="btn btn-info" href="#" onclick=javascript:info(' + row.id + ') ><span class="glyphicon glyphicon-search"></span>查看</button>'+'&nbsp'+
+                        '<button  class="btn btn-success" href="#" onclick=update(' + row.id + ') ><span class="glyphicon glyphicon-pencil"></span>修改</button>'+'&nbsp'+
+                        '<button class="btn btn-danger" href="#" onclick=delete(' + row.id + ') > <span class="glyphicon glyphicon-trash"></span>删除</button>'+'<input type="hidden" id="rowTmp">'
+                    ;
+                    return html;
+                }
+            },{ "orderable": false, "targets": 0 },
+            ]
+
+        } );
+
+    })
+
+</script>
+
+
+
+<hr/>
+<style type="text/css">
+    #examplePage ul li{
+        display: inline;
+    }
+</style>
+<h3 style="text-align: center;">Bootstrap  分页组件！</h3>
+<div id="examplePage" class="pagination"></div>
+<script type="text/javascript">
+    $(function (){
+        $('#examplePage').bootstrapPaginator({
+            currentPage: 3,
+            totalPages: 100
+        });
+    })
+</script>
+
+
+
+<hr/>
+<h6 style="text-align: center;">lay ui组件！</h6>
+<button type="button" class="btn btn-primary" onclick="javascript:textLayui();">获取选择的数据row</button>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-plus"></span>添加</button>
+<table class="layui-table" lay-data="{
+height:515, url:'/user/layui', page:true,limit: 10,id:'test',skin:'skin',size:'lg'
+}" lay-filter="test">
+    <thead>
+    <tr>
+        <th lay-data="{checkbox:true}"></th>
+        <th lay-data="{field:'id', width:100,title:'编号', sort: true}"></th>
+        <th lay-data="{field:'username', width:250,sort: true,edit:'text'}">用户名</th>
+        <th lay-data="{field:'password', width:250, sort: true,style:'background-color: #597077; color: #fff;'}">密码</th>
+        <th lay-data="{field:'expired', width:200,sort: true,templet: '#expiredTpl'}">过期</th>
+        <th lay-data="{field:'locked', width:200,sort: true,templet: '#lockedTpl'}">锁🔒</th>
+        <th lay-data="{field:'credential', width:200, sort: true}">凭证</th>
+        <th lay-data="{field:'enabled', width:200, sort: true}">禁用</th>
+        <th lay-data="{field:'createTime', width:200,sort: true}">创建时间</th>
+        <th lay-data="{ width:260,height:45, align:'center', toolbar: '#barDemo'}">操作</th>
+    </tr>
+    </thead>
+</table>
+<script type="text/html" id="barDemo">
+    <button type="button" class="btn btn-success btn-sm" lay-event="detail"><span class="glyphicon glyphicon-search"> </span> 查看</button>
+    <button type="button" class="btn btn-info btn-sm" lay-event="edit"><span class="glyphicon glyphicon-pencil"> </span> 编辑</button>
+    <button type="button" class="btn btn-danger btn-sm" lay-event="del"><span class="glyphicon glyphicon-trash"> </span>删除</button>
+</script>
+<script type="text/html" id="expiredTpl">
+    {{#  if(d.expired == true){ }}
+    <span style="color: #ff0c4b;">失效</span><span class="glyphicon glyphicon-remove"> </span>
+    {{# } else { }}
+    <span style="color: #51ffc1;">未失效</span><span class="glyphicon glyphicon-ok"> </span>
+    {{# } }}
+</script>
+<script type="text/html" id="lockedTpl">
+    {{#  if(d.locked == true){ }}
+    <span style="color: #ff0c4b;">锁定</span><span class="glyphicon glyphicon-remove"> </span>
+    {{# } else { }}
+    <span style="color: #51ffc1;">未锁定</span><span class="glyphicon glyphicon-ok"> </span>
+    {{# } }}
+</script>
+<!-- 添加模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    添加配置
+                </h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label for="firstname" class="col-sm-2 control-label">名字</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="firstname"
+                                   placeholder="请输入名字">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastname" class="col-sm-2 control-label">姓</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="lastname"
+                                   placeholder="请输入姓">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <ul id="myTab" class="nav nav-tabs">
+                            <li class="active">
+                                <a href="#home" data-toggle="tab">
+                                    菜鸟教程
+                                </a>
+                            </li>
+                            <li><a href="#ios" data-toggle="tab">上传文件</a></li>
+                        </ul>
+                        <div id="myTabContent" class="tab-content">
+                            <div class="tab-pane fade in active" id="home">
+                                <p>菜鸟教程是一个提供最新的web技术站点，本站免费提供了建站相关的技术文档，帮助广大web技术爱好者快速入门并建立自己的网站。菜鸟先飞早入行——学的不仅是技术，更是梦想。</p>
+                            </div>
+                            <div class="tab-pane fade" id="ios">
+                                <div class="layui-upload-drag" id="test10" style="margin: 0px auto;">
+                                    <i class="layui-icon"></i>
+                                    <p>点击上传，或将文件拖拽到此处</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">
+                    提交更改
+                </button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+<script type="text/javascript">
+    $(function (){
+        layui.use(['layer', 'table','upload'], function(){
+            //var layer = layui.layer;
+            var table = layui.table;
+            var upload = layui.upload;
+            //拖拽上传
+            upload.render({
+                elem: '#test10'
+                ,url: '/upload/'
+                ,done: function(res){
+                    console.log(res)
+                }
+            });
+            //监听工具条
+            table.on('tool(test)', function(obj){
+                var data = obj.data;
+                if(obj.event === 'detail'){
+                    layer.msg('ID：'+ data.id + ' 的查看操作');
+                } else if(obj.event === 'del'){
+                    layer.confirm('真的删除行么', function(index){
+                        obj.del();
+                        layer.close(index);
+                    });
+                } else if(obj.event === 'edit'){
+                    layer.alert('编辑行：<br>'+ JSON.stringify(data))
+                }
+            });
+        });
+
+
+
+    })
+    //获取选中的数据 row
+    function textLayui(){
+        layui.use(['layer', 'table'], function(){
+            var table = layui.table;
+            var checkStatus = table.checkStatus('test'); //test即为参数id设定的值
+            console.log(checkStatus.data);
+        })
+    }
+</script>
+
+
+<hr/>
+<h6 style="text-align: center;">lay ui组件！  js获取数据</h6>
+<button type="button" class="btn btn-primary" onclick="javascript:textLayui2();">获取选择的数据row</button>
+<table id="demoJs" lay-filter="demoJs">
+	
+</table>
+<script type="text/javascript">
+$(function (){
+	
+	layui.use(['table'], function(){
+		var table = layui.table;
+		table.render({
+			  elem: "#demoJs", //指定原始表格元素选择器（推荐id选择器）
+			  url:"/user/layui/?zhong=lin",
+			  method:"get",
+			  where:{"xx":123,"yy":"abc","ZZ":"钟林"},
+			  limit:10,
+			  limits:[10,11,12,13,14,15,16],
+			  height: 500,//容器高度
+			  page:true,
+			  size:"lg" ,
+			  //skin:'nob',
+			  //even:true,
+			  cols: [ [{checkbox: true},
+			          {field: 'id',title:"编号",sort:true,width:100,style:'background-color: #597077; color: #fff;'},
+			          {field: 'username',title:"用户名",width:200},
+			          {field: 'password',title:"密码",width:200},
+			          {field: 'expired',title:"过期",width:200,templet:'#expiredTpl'},
+			          {field: 'locked',title:"锁定状态",width:200,templet:'#lockedTpl'},
+			          {field: 'credential',title:"凭证",width:200},
+			          {field: 'enabled',title:"禁用",width:200},
+			          {field: 'createTime',title:"创建时间",width:150},
+			          {title:'工具条', width:200, align:'center', toolbar: '#barDemo'}
+			          ] ]
+			  
+			});
+        //监听工具条
+        table.on('tool(demoJs)', function(obj){
+            var data = obj.data;
+            if(obj.event === 'detail'){
+                layer.msg('ID：'+ data.id + ' 的查看操作');
+            } else if(obj.event === 'del'){
+                layer.confirm('真的删除行么', function(index){
+                    obj.del();
+                    layer.close(index);
+                });
+            } else if(obj.event === 'edit'){
+                layer.alert('编辑行：<br>'+ JSON.stringify(data))
+            }
+        });
+	});
+})
+
+    //获取选中的数据 row
+    function textLayui2(){
+        layui.use(['table'], function(){
+            var table = layui.table;
+            var checkStatus = table.checkStatus('demoJs'); //demoJs即为参数id设定的值
+            alert(checkStatus.data);
+        })
+    }
+</script>
+
+</body>
+</html>

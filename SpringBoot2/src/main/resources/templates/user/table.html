@@ -1,0 +1,217 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"> 
+<head>
+    <!--Bootstrap-->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css">
+    
+    <link rel="stylesheet" href="/js/jstree/themes/default/style.css" />
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
+    
+    <script src="https://cdn.bootcss.com/knockout/3.4.2/knockout-min.js"></script>
+    <script src="http://mockjs.com/dist/mock.js"></script>
+    <script src="/js/mockData.js"></script>
+    
+    
+    <script src="/js/jstree/jstree.js"></script>
+    <title>Hello World!</title>
+    <STYLE type="text/css">
+       th, td { white-space: nowrap; }
+              div.dataTables_wrapper {
+                width: 500px;
+                margin: 0 auto;
+              }
+    </STYLE>
+</head>
+
+
+<body>
+
+
+
+<hr/>
+
+
+<div class="row">
+
+	<div class="col-sm-3">
+		<div id="configTree">
+		  <ul>
+		    <li data-bind='text:parentValue' data-jstree='{"icon":"glyphicon glyphicon-heart"}' id="parentTree"></li><!-- 父节点 -->
+		  </ul>
+		  
+			  <ul data-bind="foreach: childValue" id="childTree"><!-- 子节点 append进去 -->
+			        <li data-bind="text: $data" data-jstree='{"icon":"glyphicon glyphicon-file"}'></li>
+			  </ul>
+			  
+		</div>
+		<input type="text" id="selectedTreeName" />
+	</div>
+
+
+	<div class="col-sm-5" style="border: 1px solid red; height: auto;">
+	<button class="btn btn-primary">添加</button>
+	<table id="example1" class="table table-bordered" cellspacing="0" width="100%">
+	        <thead>
+	            <tr>
+	                <th>编号</th>
+	                <th>姓名</th>
+	                <th>版本</th>
+	                <th>内容</th>
+	                <th>集合</th>
+	                <th>开始时间</th>
+	                <th>修改时间</th>
+					<th>操作</th>
+	            </tr>
+	        </thead>
+	 
+	    </table>
+		<table id="example2" class="table table-bordered" cellspacing="0" width="100%">
+	        <thead>
+	            <tr>
+	                <th>编号2</th>
+	                <th>姓名2</th>
+	                <th>版本2</th>
+	                <th>内容2</th>
+	                <th>集合2</th>
+	                <th>开始时间2</th>
+	                <th>修改时间2</th>
+					<th>操作</th>
+	            </tr>
+	        </thead>
+	    </table>
+	</div>
+	
+
+	
+
+</div>
+
+
+
+
+
+<script type="text/javascript">
+
+new initTree();
+
+
+function treeViewModel(){
+	var self = this;
+	self.parentValue = "腾讯Java门户！";
+	$.ajax({
+            url : 'config/tree',
+            data:{name:'XXX'},
+            cache : false, 
+            async : false,//同步獲取數據
+            type : "POST",
+            dataType : 'json',
+            success : function (result){
+            	self.childValue = result;
+            }
+	});
+	console.log(self);
+}
+
+
+function initTree(){
+	$("#example1").hide();
+	$("#example2").hide();
+	ko.applyBindings(new treeViewModel(),$("#configTree")[0]);
+	$("#parentTree").append($("#childTree"));
+	
+	$('#configTree').jstree();
+	$('#configTree').on('changed.jstree', function (e, data) {
+	 	$("#selectedTreeName").val(data.node.text);
+		 if(data.node.parent=="#"){//父节点 parent=#
+			 $("#example1").show();
+			 $("#example2_wrapper").hide();
+			 new initTable1(data.node.text);
+			 console.log("父table");
+		 }else{
+			 $("#example1_wrapper").hide();
+			 $("#example2").show();
+			 new initTable2(data.node.text);
+			 console.log("子table");
+		 }
+	});
+}
+
+function initTable1(paremter){
+	$("#example1").dataTable().fnDestroy();//初始化之前先销毁
+	var table = $('#example1').DataTable( {
+	       ajax: '/user/tableData?par='+paremter,
+	       columns: [
+	                   { "data": "id"},
+	                   { "data": "name" },
+	                   { "data": "version" },
+	                   { "data": "content" },
+	                   { "data": "list" },
+	                   { "data": "starTime"},
+	                   { "data": "updateTime" }
+	               ],
+	               destory:true,
+	               scrollX: true,
+	               autoWidth: true,
+	               columnDefs: [ {
+	                   "targets": 7,
+	                   "data": "",
+	                   "defaultContent": "<a class='btn'>查看!</a>"
+	               } ]
+	   } );
+	
+	$('#example1 tbody').off("click");//清空事件
+	$('#example1 tbody').on( 'click', 'a', function () {
+        var data = $('#example1').DataTable().row( $(this).parents('tr') ).data();
+        alert(data.name );
+    } );
+}
+
+function initTable2(paremter){
+	$("#example2").dataTable().fnDestroy();
+	var table = $('#example2').DataTable( {
+	       ajax: '/user/tableData?par='+paremter,
+	       columns: [
+	                   { "data": "id"},
+	                   { "data": "name" },
+	                   { "data": "version" },
+	                   { "data": "content" },
+	                   { "data": "list" },
+	                   { "data": "starTime"},
+	                   { "data": "updateTime" }
+	               ],
+	               destory:true,
+	               scrollX: true,
+	               columnDefs: [ {
+	                   "targets": 7,
+	                   "data": "",
+	                   "defaultContent": "<a class='btn'>查看!</a>"
+	               } ]
+	   } );
+	
+	$('#example2 tbody').off("click");
+	$('#example2 tbody').on( 'click', 'a', function () {
+        var data = $('#example2').DataTable().row( $(this).parents('tr') ).data();
+        alert(data.name );
+    } );
+}
+	
+
+
+
+
+
+
+
+</script>
+
+
+
+
+
+</body>
+</html>
