@@ -59,7 +59,7 @@ public class Jdk8 {
 		System.out.println(transferLongToDate("yyyy-MM-dd",1508466885L));
 		
 		
-		
+		/*
 		//集合方法过滤条件
 		List<Student> list = new ArrayList<>();
 		list.add(new Student(3, "c", "城"));
@@ -74,7 +74,7 @@ public class Jdk8 {
 		//list.sort((o1,o2)->o1.getId()>o2.getId()?1:(o1.getId));
 		System.out.println( JSONArray.fromObject(sorted));
 		Field[] declaredFields = com.eumji.zblog.controller.user.Jdk8Test.Student.class.getDeclaredFields();
-		System.out.println(declaredFields.length);
+		System.out.println(declaredFields.length);*/
 		
 	}
 	
