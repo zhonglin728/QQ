@@ -151,11 +151,11 @@
             <artifactId>fastjson</artifactId>
             <version>1.2.31</version>
         </dependency>
-
+<!-- 
 		<dependency>
             <groupId>com.oracle.jdbc</groupId>
             <artifactId>com.springsource.oracle.jdbc</artifactId>
-        </dependency>
+        </dependency> -->
     </dependencies>
 
     <build>
