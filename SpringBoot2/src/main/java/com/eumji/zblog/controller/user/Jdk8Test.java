@@ -10,7 +10,7 @@ import com.eumji.zblog.controller.user.vo.Student;
 
 public class Jdk8Test {
 	
- class Demo{
+ static class Demo{
 	    private String name;
 	    private  Integer sex;
 	    private  String age;
@@ -62,7 +62,7 @@ public class Jdk8Test {
        List<Demo> demos = new ArrayList<Demo>();
         //原始数据
         System.out.println("原始数据 组装list<demo>*******************");
-        //demos = list.stream().map(student-> new Demo(Student.getAge(),student1.getSex())).collect(Collectors.toList());
+        demos = list.stream().map(student-> new Demo(student.getAge(),student.getSex())).collect(Collectors.toList());
         demos.forEach(demo -> {
             System.out.println("年龄 "+demo.getAge() +"  性别 " +demo.getSex()+",");
         });
