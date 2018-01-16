@@ -25,6 +25,12 @@ public class Student {
 		this.age = age;
 		this.sex = sex;
 	}
+	@Override
+	public String toString() {
+		return "Student [age=" + age + ", sex=" + sex + "]";
+	}
+	
+	
 	
      
 
